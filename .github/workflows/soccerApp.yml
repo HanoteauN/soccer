@@ -22,7 +22,7 @@ jobs:
         with:
           python-version: 2.7
         env:
-          Soccer_Token: ${{ secrets.Soccer_Token }}
+          Soccer_Token: ${{ secrets.SOCCER_TOKEN }}
 
       - name: Install dependencies
         run: |
@@ -35,7 +35,7 @@ jobs:
           python -m unittest discover tests
         env:
           CI: true
-          Soccer_Token: ${{ secrets.Soccer_Token }}
+          Soccer_Token: ${{ secrets.SOCCER_TOKEN }}
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@master
@@ -60,7 +60,7 @@ jobs:
         uses: docker/build-push-action@v1
         with:
           username: ${{github.actor}}
-          password: ${{secrets.GITHUB_TOKEN}}
+          password: ${{secrets.CONNECT_TOKEN}}
           registry: docker.pkg.github.com
           repository: HanoteauN/soccer
           tag_with_sha: true
