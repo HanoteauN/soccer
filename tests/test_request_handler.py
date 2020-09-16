@@ -89,16 +89,16 @@ class TestRequestHandler(unittest.TestCase):
         with self.assertRaises(APIErrorException) as context:
             self.rq._get(self.dummy_url)
         self.assertTrue("You have exceeded your allowed "
-                        "requests per minute/day" in context.exception)
+                       "requests per minute/day" in context.exception)
 
-    @mock.patch('soccer.writers.Stdout.live_scores')
-    @mock.patch('requests.get')
-    def test_get_live_scores_ok(self, mock_request_call, mock_writer):
-        mock_request_call.side_effect = \
-            [mocked_requests_get({'games': [1, 2]}, 200)]
-        mock_writer.return_value = mock.Mock()
-        self.rq.get_live_scores(True)
-        mock_writer.assert_called_once()
+#    @mock.patch('soccer.writers.Stdout.live_scores')
+#    @mock.patch('requests.get')
+#    def test_get_live_scores_ok(self, mock_request_call, mock_writer):
+#        mock_request_call.side_effect = \
+#            [mocked_requests_get({'games': [1, 2]}, 200)]
+#        mock_writer.return_value = mock.Mock()
+#        self.rq.get_live_scores(True)
+#        mock_writer.assert_called_once()
 
     @mock.patch('click.secho')
     @mock.patch('soccer.writers.Stdout.live_scores')
